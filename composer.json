@@ -3,6 +3,7 @@
   "description": "Common library for DevTech projects",
   "minimum-stability": "stable",
   "license": "proprietary",
+  "version" : "1.0.0",
   "authors": [
     {
       "name": "Dejan Obradovic",

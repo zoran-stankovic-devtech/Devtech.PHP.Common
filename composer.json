@@ -1,0 +1,23 @@
+{
+  "name": "devtech/common",
+  "description": "Common library for DevTech projects",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Dejan Obradovic",
+      "email": "dejan.obradovic@devtechgroup.com"
+    },
+    {
+      "name": "Nemanja Tomic",
+      "email": "nemanja.tomic@devtechgroup.com"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "Devtech": [
+        "src/"
+      ]
+    }
+  }
+}

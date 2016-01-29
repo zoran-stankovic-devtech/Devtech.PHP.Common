@@ -9,32 +9,57 @@
 namespace Devtech\Common;
 
 class CliHelper {
-	/**
-	 * Parses the arguments passed to CLI and returns the vendorID
-	 *
-	 * @param array $args
-	 * @return int
-	 * @throws \Exception
-	 */
 
-	public static function getVendorId($args) {
-		if (count($args) > 1 && is_numeric($args[1]) && $args[1] > 0) {
-			return $args[1];
-		} else {
-			throw new \Exception("Argument missing, please provide vendor id as script's first argument.");
+	/**
+	 * @var IValidator
+	 */
+	private $validator;
+
+	/**
+	 * CliHelper constructor.
+	 * @param IValidator $validator
+	 * @param $count
+	 */
+	public function __construct(IValidator $validator,$count)
+	{
+		$this->validateNumberOfArgs($count);
+		$this->validator = $validator;
+	}
+
+	/**
+	 * Checks number of arguments passed to CLI
+	 *
+	 * @param integer $count
+	 * @throws Exception
+	 */
+	private function validateNumberOfArgs($count)
+	{
+		if ($count !== 4) {
+			throw new Exception("Not enough arguments.");
 		}
 	}
 
 	/**
-	 * @param $args
+	 * Parses the argument passed to CLI and returns the vendorID
+	 *
+	 * @param string $arg
 	 * @return mixed
-	 * @throws \Exception
 	 */
-	public static function getReportPeriod($args){
-		if (count($args) > 1 && is_string($args[2])){
-			return $args[2];
-		}else{
-			throw new \Exception("Argument missing, please provide date period as script's second argument.");
-		}
+	public function getIntArg($arg)
+	{
+		return $this->validator->validateInt($arg);
+	}
+
+	/**
+	 * Validate the date passed to CLI and returns it
+	 *
+	 * @param string $arg
+	 * @param string $format
+	 * @param string $timezone
+	 * @return mixed
+	 */
+	public function getDateArg($arg, $format, $timezone)
+	{
+		return $this->validator->validateDate($arg, $format, $timezone);
 	}
 } 
